@@ -45,7 +45,9 @@ services:
       - "23306:3306"
     environment:
       MYSQL_DATABASE: dlemp
-      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_USER: user
+      MYSQL_PASSWORD: secret
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
