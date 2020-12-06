@@ -55,6 +55,7 @@ services:
       - .docker/mysql/my.cnf:/etc/mysql/my.cnf
     networks:
       - app-network
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
 
 #Docker Networks
 networks:
