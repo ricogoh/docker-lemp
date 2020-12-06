@@ -2,6 +2,10 @@
 
 Based on: https://www.digitalocean.com/community/tutorials/how-to-set-up-laravel-nginx-and-mysql-with-docker-compose
 
+###
+Composer run inside container.  
+Yarn or NPM run on host.
+
 ### Image Repo
 git@github.com:ricogoh/docker-lemp.git
 
