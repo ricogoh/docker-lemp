@@ -17,7 +17,7 @@ http://localhost:2080
 docker-compose up -d
 ```
 
-### Interact With App
+## Interact With App
 *app stack service in .yml* 
 ```docker
 docker-compose exec app composer install 
@@ -26,7 +26,7 @@ docker-compose exec app php artisan migrate
 docker-compose exec app php artisan config:cache 
 docker-compose exec app php artisan tinker 
 ```
-### Creating a User for MySQL
+## Creating a User for MySQL
 ```
 docker-compose exec db bash
 ```
@@ -36,4 +36,14 @@ docker-compose exec db bash
 mysql -u root -p
 GRANT ALL ON dlemp.* TO 'user'@'%' IDENTIFIED BY 'secret';
 FLUSH PRIVILEGES;
+```
+
+## Connecting To Host MySql
+```
+DB_CONNECTION=mysql
+DB_HOST=host.docker.internal
+DB_PORT=3306
+DB_DATABASE=dbname
+DB_USERNAME=user
+DB_PASSWORD=secret
 ```
