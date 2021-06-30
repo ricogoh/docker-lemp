@@ -19,7 +19,12 @@ docker-compose up -d
 
 ## Interact With App
 *app stack service in .yml* 
-```docker
+```
+docker exec -it docker-lemp_app_1 bash
+docker exec -u 0 -it docker-lemp_app_1 bash
+
+docker-compose build app
+
 docker-compose exec app composer install 
 docker-compose exec app php artisan key:generate 
 docker-compose exec app php artisan migrate 
