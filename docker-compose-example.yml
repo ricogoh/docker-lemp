@@ -7,6 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: dlemp
+    # container_name: dlemp-app
     restart: unless-stopped
     tty: true
     environment:
@@ -15,27 +16,16 @@ services:
     working_dir: /var/www
     volumes:
       - ./:/var/www
-      - .dockert/php/local.ini:/usr/local/etc/php/conf.d/local.ini
-    networks:
-      - app-network
-
-  #Nginx Service
-  webserver:
-    image: nginx:alpine
-    restart: unless-stopped
-    tty: true
-    ports:
-      - "2080:80"
-      - "2443:443"
-    volumes:
-      - ./:/var/www
-      - .docker/nginx/conf.d/:/etc/nginx/conf.d/
+      - .docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    depends_on:
+      - db
     networks:
       - app-network
 
   #MySQL Service
   db:
     image: mysql:5.7.22
+    # container_name: dlemp-db
     restart: unless-stopped
     tty: true
     ports:
@@ -53,6 +43,21 @@ services:
     networks:
       - app-network
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+
+  #Nginx Service
+  nginx:
+    image: nginx:alpine
+    # container_name: dlemp-nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "2080:80"
+      - "2443:443"
+    volumes:
+      - ./:/var/www
+      - .docker/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - app-network
 
 #Docker Networks
 networks:
